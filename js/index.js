@@ -3,6 +3,10 @@ const lib = {
         "table flipping": [
             "(╯°□°）╯︵ ┻━┻",
             "┻━┻ミ＼(≧ﾛ≦＼)"
+        ],
+        "good morning": [
+            "(*^｡^*)Rise (*^o^*)And ＼(*^0^*)／Shineｰ!!",
+            "(_ _)(-.-)(~O~)*yawn*・・(~O~)(-.-)"
         ]
     },
     "nameMap": {
@@ -23,15 +27,17 @@ console.log("lib: ", JSON.stringify(lib))
 //     (╯°□°）╯︵ ┻━┻
 
 $(document).ready(() => {
+    $("body").append(`
+            <div class="suggestions"></div>
+        `)
+    $(".suggestions").dialog()
+    $("span.ui-dialog-title").text('Kaomoji Typer')
     const theChosenOnes = {}
     let lastWordCache = ""
-    console.log("start")
     $('textarea').on('input selectionchange propertychange', function () {
         const allWords = $(this).val().split(/\s/)
         const lastWord = allWords.pop()
-        console.log("lastWord: ", lastWord)
         const lastWordLength = lastWord.length
-
         if (lastWordLength === 0) {
             closeLastDropDown(this, allWords)
         } else if (lastWordLength > 1) {
@@ -42,24 +48,50 @@ $(document).ready(() => {
     })
 })
 
-function getSuggestions (word) {
-    return lib.kaomoji["table flipping"]
+const kaomoji = lib.kaomoji
+const nameMap = lib.nameMap
+const nameArr = lib.nameArr
+
+function getSuggestions (lastWord) {
+    lastWord = lastWord.toLowerCase()
+    if (kaomoji[lastWord]) return kaomoji[lastWord]
+    if (nameMap[lastWord]) return kaomoji[nameMap[lastWord]]
+    let matchingKaomojis = []
+    _.forEach(nameArr, name => {
+        if (name.includes(lastWord)) {
+            matchingKaomojis = _.union(matchingKaomojis, kaomoji[nameMap[name]])
+        }
+    })
+
+    return matchingKaomojis
 }
 
 function closeLastDropDown (fel) {
-
+    $(".suggestions").html("")
 }
 
 function updateDropDown (el, allWords, lastWord) {
     const suggestedKaomojis = getSuggestions (lastWord)
+    console.log("lastWord: ", lastWord)
+    console.log("suggestedKaomojis: ", suggestedKaomojis)
+    // _.forEach(suggestedKaomojis, kaomoji => {
+    //     allWords += kaomoji
+    // })
+    // allWords += " "
+    // $(el).val(allWords)
+    let innerHtml = "<ol>"
     _.forEach(suggestedKaomojis, kaomoji => {
-        allWords += kaomoji
+        innerHtml += "<li>" + kaomoji + "</li>"
     })
-    allWords += " "
-    $(el).val(allWords)
+    innerHtml += "</ol>"
+    $(".suggestions").html(innerHtml)
+    console.log(`$(".suggestions").html(): ${$("suggestions").html()}`)
 }
 
 function openNewDropDown (el) {
-    const $inputArea = $(el)
-    console.log("something")
+    $(".suggestions").show()
+}
+
+function initHelper () {
+
 }

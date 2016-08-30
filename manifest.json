@@ -14,8 +14,8 @@
   "content_scripts": [
       {
           "matches": ["https://translate.google.com/*"],
-          "js": ["js/jquery-3.0.0.min.js", "js/moment-2.14.1.min.js", "js/lodash-4.14.2.min.js", "js/index.js"],
-          "css": ["css/index.css"]
+          "js": ["js/jquery-3.0.0.min.js", "js/jquery-ui-1.12.0.min.js", "js/moment-2.14.1.min.js", "js/lodash-4.14.2.min.js", "js/index.js"],
+          "css": ["css/jquery-ui-1.12.0.min.css", "css/index.css"]
       }
 
   ],
