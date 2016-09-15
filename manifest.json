@@ -3,7 +3,7 @@
 
   "name": "Kaomoji-Typer",
   "description": "A kaomoji input that suggests kaomojis to you based on what you are typing",
-  "version": "0.138",
+  "version": "0.139",
 
   "icons": {
       "16": "images/icon.png",

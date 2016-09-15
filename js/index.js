@@ -119,26 +119,24 @@ const nameMap = lib.nameMap
 const nameArr = lib.nameArr
 
 $(document).ready(() => {
-    initHelper('Kaomoji Typer')
-    $('textarea, input').on('input selectionchange propertychange', function (e) {
-        const allWords = $(this).val().split(/\s/)
-        const lastWord = allWords.pop()
-        const lastWordLength = lastWord.length
-        if (lastWordLength === 0) {
-            $(".suggestions").html("")
-        } else if (lastWordLength > 1) {
-            const lastChar = lastWord.charAt(lastWordLength - 1)
-            if (lastChar > 0 && lastChar <= suggestedKaomojis.length) {
-                $(this).val(`${allWords} ${suggestedKaomojis[lastChar - 1]} `)
-                $(".suggestions").html("")
-            } else {
-                updateDropDown(this, allWords, lastWord)
-            }
-        } else {
-            openNewDropDown(this, allWords)
-            updateDropDown(this, allWords, lastWord) // get suggestions when only one char is typed or not?
-        }
+    const inputPopup = initHelper('Kaomoji Typer')
+    inputPopup.hide()
+
+    $('.ui-button-icon.ui-icon.ui-icon-closethick').on('click', () => {
+        inputPopup.remove()
     })
+
+    let listenedDomCache
+
+    (function checkNewDom () {
+        const currentDom = $('textarea, input')
+        const newDom = _.difference(currentDom, listenedDomCache)
+        console.log("newDOm:", newDom)
+        if (newDom && newDom.length > 0) addListenEvent(inputPopup, newDom)
+        listenedDomCache = currentDom
+        setTimeout(checkNewDom, 3000)
+    })()
+
     const originalTop = $('.ui-dialog').offset().top
     $(window).scroll(function () {
         console.log("wow!!", $(this).scrollTop())
@@ -162,13 +160,39 @@ function getSuggestions (lastWord) {
     return matchingKaomojis
 }
 
+function addListenEvent (inputPopup, newDom) {
+    console.log("newDom: ", newDom)
+    $(newDom).on('input selectionchange propertychange', function (e) {
+        const allWords = $(this).val().split(/\s/)
+        const lastWord = allWords.pop()
+        const lastWordLength = lastWord.length
+        if (lastWordLength === 0) {
+            inputPopup.hide()
+            $(".suggestions").html("")
+        } else if (lastWordLength > 1) {
+            const lastChar = lastWord.charAt(lastWordLength - 1)
+            if (lastChar > 0 && lastChar <= suggestedKaomojis.length) {
+                $(this).val(`${allWords} ${suggestedKaomojis[lastChar - 1]} `)
+                inputPopup.hide()
+                $(".suggestions").html("")
+            } else {
+                updateDropDown(this, allWords, lastWord)
+            }
+        } else {
+            openNewDropDown(this, allWords)
+            inputPopup.show()
+            updateDropDown(this, allWords, lastWord) // get suggestions when only one char is typed or not?
+        }
+    })
+}
+
 function updateDropDown (el, allWords, lastWord) {
     suggestedKaomojis = getSuggestions (lastWord)
-    let innerHtml = "<ol>"
+    let innerHtml = "<div>"
     _.forEach(suggestedKaomojis, (kaomoji, index) => {
-        if (index < 9) innerHtml += "<li>" + kaomoji + "</li>"
+        if (index < 9) innerHtml += "<span>" + (index + 1) + ". " + kaomoji + "</span><br />"
     })
-    innerHtml += "</ol>"
+    innerHtml += "</div>"
     $(".suggestions").html(innerHtml)
 }
 
@@ -182,4 +206,6 @@ function initHelper (title) {
         `)
     $(".suggestions").dialog()
     $("span.ui-dialog-title").text(title)
+
+    return $('.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-draggable.ui-resizable')
 }
