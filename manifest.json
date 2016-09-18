@@ -3,8 +3,7 @@
 
   "name": "Kaomoji-Typer",
   "description": "A kaomoji input that suggests kaomojis to you based on what you are typing",
-  "version": "0.138.1",
-  "update_url": "https://raw.githubusercontent.com/xuezhma/kaomoji-typer/master/updates.xml",
+  "version": "0.138.2",
   "icons": {
       "16": "images/icon.png",
       "48": "images/icon.png",

@@ -117,21 +117,22 @@ _.forEach(lib.kaomoji, (kaomoji, fullName) => {
 const kaomoji = lib.kaomoji
 const nameMap = lib.nameMap
 const nameArr = lib.nameArr
+let suggestionsTurnOff = false
 
 $(document).ready(() => {
     const inputPopup = initHelper('Kaomoji Typer')
     inputPopup.hide()
-
     $('.ui-button-icon.ui-icon.ui-icon-closethick').on('click', () => {
+        $(".suggestions").html("")
         inputPopup.remove()
+        suggestionsTurnOff = true
     })
 
     let listenedDomCache
 
     (function checkNewDom () {
         const currentDom = $('textarea, input')
-        const newDom = _.difference(currentDom, listenedDomCache)
-        console.log("newDOm:", newDom)
+        const newDom = _.difference(currentDom, listenedDomCache, suggestionsTurnOff)
         if (newDom && newDom.length > 0) addListenEvent(inputPopup, newDom)
         listenedDomCache = currentDom
         setTimeout(checkNewDom, 3000)
@@ -139,7 +140,6 @@ $(document).ready(() => {
 
     const originalTop = $('.ui-dialog').offset().top
     $(window).scroll(function () {
-        console.log("wow!!", $(this).scrollTop())
         $('.ui-dialog').css('top', originalTop + $(this).scrollTop())
     })
 })
@@ -161,12 +161,12 @@ function getSuggestions (lastWord) {
 }
 
 function addListenEvent (inputPopup, newDom) {
-    console.log("newDom: ", newDom)
     $(newDom).on('input selectionchange propertychange', function (e) {
         const allWords = $(this).val().split(/\s/)
         const lastWord = allWords.pop()
         const lastWordLength = lastWord.length
-        if (lastWordLength === 0) {
+        if (suggestionsTurnOff) {
+        } else if (lastWordLength === 0) {
             inputPopup.hide()
             $(".suggestions").html("")
         } else if (lastWordLength > 1) {
@@ -188,12 +188,23 @@ function addListenEvent (inputPopup, newDom) {
 
 function updateDropDown (el, allWords, lastWord) {
     suggestedKaomojis = getSuggestions (lastWord)
-    let innerHtml = "<div>"
+    let innerHtml = "<div><p class='tip'>No need to click. Just type 1-9</p>"
     _.forEach(suggestedKaomojis, (kaomoji, index) => {
         if (index < 9) innerHtml += "<span>" + (index + 1) + ". " + kaomoji + "</span><br />"
     })
     innerHtml += "</div>"
+
     $(".suggestions").html(innerHtml)
+    $('.tip').hide()
+    $('.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-draggable.ui-resizable').hover(() => {
+        $('.tip').show()
+        $('.tip').stop()
+        $('.tip').fadeIn(1)
+    }, () => {
+        setTimeout(() => {
+            $('.tip').fadeOut(1500)
+        }, 500)
+    })
 }
 
 function openNewDropDown (el) {

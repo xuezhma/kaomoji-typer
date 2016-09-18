@@ -1,3 +1,13 @@
 .ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-draggable.ui-resizable {
     z-index: 99999999999;
 }
+
+.tip {
+    color: white;
+    background: black;
+    font-size: 18px;
+    transform: translateY(10px);
+    position: absolute;
+    padding: 5px;
+    border-radius: 5px;
+}
