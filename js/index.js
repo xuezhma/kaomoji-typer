@@ -24,11 +24,11 @@ const lib = {
             "(　◕‿◕✿)",
             "(◕▽◕✿)"
         ],
-        "blushing _flower _girl": [
+        "blushing flower girl": [
             "(˶◕‿◕˶✿)",
             "(⁄ ⁄◕⁄ω⁄◕⁄ ⁄✿)"
         ],
-        "sad __flower __girl": [
+        "sad flower girl": [
             "(◕‸ ◕✿) *pout*",
             "(◕︿◕✿)"
         ],
@@ -36,11 +36,11 @@ const lib = {
             "(╯°□°）╯︵ ┻━┻",
             "┻━┻ミ＼(≧ﾛ≦＼)"
         ],
-        "_bears __table _flipping __throwing": [
+        "bears table flipping throwing": [
             "ʕノ•ᴥ•ʔノ ︵ ┻━┻",
             " ┳┳ヾ(T(エ)Tヽ)"
         ],
-        "setting the _table": [
+        "setting the table": [
             "┬──┬ ノ( ゜-゜ノ)",
             "(ヘ･_･)ヘ┳━┳"
         ],
@@ -52,7 +52,7 @@ const lib = {
             "( ˘ ³˘)♥",
             "(ɔˆ ³(ˆ⌣ˆc)"
         ],
-        "_throwing _kisssing  _kisses": [
+        "throwing kisssing kisses": [
             "★⌒ヽ(●’､＾●)Kiss!",
             "(^з^)-☆Chu!!"
         ],
@@ -84,7 +84,7 @@ const lib = {
             "ᕕ( ᐛ )ᕗ",
             "ᐠ( ᐛ )ᐟ"
         ],
-        "it’s here / kitaaa": [
+        "it’s here kitaaa": [
             "ｷﾀ━(ﾟ∀ﾟ)━!",
             "ｷﾀ━━━(Дﾟ(○=(ﾟ∀ﾟ)=○)Дﾟ)━━━!!"
         ],
@@ -109,6 +109,9 @@ const lib = {
 
 _.forEach(lib.kaomoji, (kaomoji, fullName) => {
     _.forEach(fullName.split(" "), partiallyName => {
+        while (lib.nameMap[partiallyName]) {
+            partiallyName = `_${partiallyName}`
+        }
         lib.nameMap[partiallyName] = fullName
         lib.nameArr.push(partiallyName)
     })
