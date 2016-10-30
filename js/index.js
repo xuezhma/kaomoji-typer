@@ -217,6 +217,7 @@ function getSuggestions (lastWord) {
 
 function addListenEvent (inputPopup, newDom) {
     $(newDom).on('input selectionchange propertychange', function (e) {
+        if (this.type === "password") return
         const allWords = $(this).val().split(/\s/)
         const lastWord = allWords.pop()
         const lastWordLength = lastWord.length
