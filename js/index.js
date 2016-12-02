@@ -229,7 +229,7 @@ function addListenEvent (inputPopup, newDom) {
         } else if (lastWordLength > 1) {
             const lastChar = lastWord.charAt(lastWordLength - 1)
             if (lastChar > 0 && lastChar <= suggestedKaomojis.length) {
-                $(this).val(`${allWords} ${suggestedKaomojis[lastChar - 1]} `)
+                $(this).val(`${allWords.join(" ")} ${suggestedKaomojis[lastChar - 1]} `)
                 inputPopup.hide()
                 $(".suggestions").html("")
             } else {
