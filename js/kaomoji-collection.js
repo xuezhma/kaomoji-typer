@@ -1,4 +1,6 @@
-const lib = {
+"use strict"
+
+const kaomojiCollection = {
     "kaomoji": {
         "sparkles": [
             "✧･ﾟ: *✧･ﾟ:* 　　 *:･ﾟ✧*:･ﾟ✧",
@@ -157,15 +159,16 @@ const lib = {
     ]
 }
 
-_.forEach(lib.kaomoji, (kaomoji, fullName) => {
+_.forEach(kaomojiCollection.kaomoji, (kaomoji, fullName) => {
     _.forEach(fullName.split(" "), partiallyName => {
-        while (lib.nameMap[partiallyName]) {
+        while (kaomojiCollection.nameMap[partiallyName]) {
             partiallyName = `_${partiallyName}`
         }
-        lib.nameMap[partiallyName] = fullName
-        lib.nameArr.push(partiallyName)
+        kaomojiCollection.nameMap[partiallyName] = fullName
+        kaomojiCollection.nameArr.push(partiallyName)
     })
 })
 
-
-window["8aad06a6-a176-4807-a898-a9f56fa10298"] = lib
+const kaomoji = kaomojiCollection.kaomoji
+const nameMap = kaomojiCollection.nameMap
+const nameArr = kaomojiCollection.nameArr

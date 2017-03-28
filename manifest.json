@@ -13,7 +13,7 @@
   "content_scripts": [
       {
           "matches": ["https://*/*"],
-          "js": ["js/jquery-3.0.0.min.js", "js/jquery-ui-1.12.0.min.js", "js/lodash-4.14.2.min.js", "js/kaomoji-collection.js", "js/suggestion-algorithm.js", "js/index.js"],
+          "js": ["js/jquery-3.0.0.min.js", "js/jquery-ui-1.12.0.min.js", "js/lodash-4.14.2.min.js", "js/kaomoji-collection.js", "js/suggestion-algorithm.js", "js/dom-manipulation.js", "js/index.js"],
           "css": ["css/jquery-ui-1.12.0.min.css", "css/index.css"]
       }
 

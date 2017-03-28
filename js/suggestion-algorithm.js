@@ -1,4 +1,6 @@
-window["c5abf658-dbfb-4691-90bb-da26bfc1b7c7"] =  (kaomoji, nameMap, nameArr, lastWord) => {
+"use strict"
+
+function getSuggestions (kaomoji, nameMap, nameArr, lastWord) {
     lastWord = lastWord.toLowerCase()
     let matchingKaomojis = []
     if (kaomoji[lastWord]) matchingKaomojis = _.union(matchingKaomojis, kaomoji[lastWord])
