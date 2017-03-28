@@ -1,177 +1,9 @@
-const lib = {
-    "kaomoji": {
-        "sparkles": [
-            "✧･ﾟ: *✧･ﾟ:* 　　 *:･ﾟ✧*:･ﾟ✧",
-            "*＊✿❀　❀✿＊*"
-        ],
-        "bears": [
-            "ʕ •ᴥ•ʔ",
-            "ᶘಠᴥಠᶅ"
-        ],
-        "cats": [
-            "ฅ(＾・ω・＾ฅ)",
-            `චᆽච`
-        ],
-        "dogs": [
-            "▼・ᴥ・▼",
-            "U・ᴥ・U"
-        ],
-        "jailed": [
-            "||Φ|(|ﾟ|∀|ﾟ|)|Φ||",
-            "━━━━||Φ|(|´|Д|`|)|Φ||━━━━"
-        ],
-        "flower girl": [
-            "(　◕‿◕✿)",
-            "(◕▽◕✿)"
-        ],
-        "blushing flower girl": [
-            "(˶◕‿◕˶✿)",
-            "(⁄ ⁄◕⁄ω⁄◕⁄ ⁄✿)"
-        ],
-        "sad flower girl": [
-            "(◕‸ ◕✿) *pout*",
-            "(◕︿◕✿)"
-        ],
-        "table flipping throwing": [
-            "(╯°□°）╯︵ ┻━┻",
-            "┻━┻ミ＼(≧ﾛ≦＼)"
-        ],
-        "bears table flipping throwing": [
-            "ʕノ•ᴥ•ʔノ ︵ ┻━┻",
-            " ┳┳ヾ(T(エ)Tヽ)"
-        ],
-        "setting the table": [
-            "┬──┬ ノ( ゜-゜ノ)",
-            "(ヘ･_･)ヘ┳━┳"
-        ],
-        "good morning": [
-            "(*^｡^*)Rise (*^o^*)And ＼(*^0^*)／Shineｰ!!",
-            "(_ _)(-.-)(~O~)*yawn*・・(~O~)(-.-)"
-        ],
-        "kissing kisses": [
-            "( ˘ ³˘)♥",
-            "(ɔˆ ³(ˆ⌣ˆc)"
-        ],
-        "throwing kisssing kisses": [
-            "★⌒ヽ(●’､＾●)Kiss!",
-            "(^з^)-☆Chu!!"
-        ],
-        "hugs hugging": [
-            "(つ・▽・)つ⊂(・▽・⊂)",
-            "(つ≧▽≦)つ⊂(・ヮ・⊂)"
-        ],
-        "mad": [
-            "┗(｀Дﾟ┗(｀ﾟДﾟ´)┛ﾟД´)┛",
-            "!!!!|┛*｀Д´|┛・・~~┻━┻　┳━┳"
-        ],
-        "pigs": [
-            "(´・(oo)・｀)",
-            "(V´・(oo)・｀V)"
-        ],
-        "deep crying face": [
-            "ಥ_ಥ",
-            "ಥ╭╮ಥ"
-        ],
-        "denko shoboon": [
-            "(´・ω・｀)",
-            "Σ(´・ω・｀)"
-        ],
-        "raise your dongers": [
-            "ヽ༼ຈل͜ຈ༽ﾉ",
-            "✺◟༼ຈ ل͜ ຈ༽◞✺"
-        ],
-        "strolling happy gary": [
-            "ᕕ( ᐛ )ᕗ",
-            "ᐠ( ᐛ )ᐟ"
-        ],
-        "it’s here kitaaa": [
-            "ｷﾀ━(ﾟ∀ﾟ)━!",
-            "ｷﾀ━━━(Дﾟ(○=(ﾟ∀ﾟ)=○)Дﾟ)━━━!!"
-        ],
-        "laughing": [
-            "(´∀｀)",
-            "ヽ（´∀｀）ノ"
-        ],
-        "lenny face": [
-            "( ͡° ͜ʖ ͡°)",
-            "ᕦ( ͡° ͜ʖ ͡°)ᕤ"
-        ],
-        "look of disapproval": [
-            "ಠ_ಠ",
-            "ლ(ಠ益ಠლ)"
-        ],
-        "shrug": [
-            `¯\\\_(ツ)_/¯`,
-            `¯\\\_㋡_/¯`
-        ],
-        "smiling": [
-            "（＾－＾）",
-            "（＾O＾）"
-        ],
-        "smug face": [
-            "ಸ‿ಸ",
-            "ಇ(ಸ‿ಸ)ಇ"
-        ],
-        "cheerful": [
-            "(❁´◡`❁)",
-            "ヾ(＠^∇^＠)ノ"
-        ],
-        "excited": [
-            "✧ ─=≡Σ((( つ•̀ω•́)つ",
-            "✖‿✖"
-        ],
-        "blushing flattered": [
-            "(〃 ω 〃)",
-            "‧⁺( ᵒ̴̶̷̥́ ◡ ᵒ̴̶̷̣̥̀ )⁺‧"
-        ],
-        "sad crying": [
-            "o（ｉДｉ）o",
-            "˚‧º·(˚ ˃̣̣̥⌓˂̣̣̥ )‧º·˚"
-        ],
-        "sad depressed": [
-            "(◞ ‸ ◟ㆀ)",
-            "(╯︵╰)"
-        ],
-        "weird awkward": [
-            "( ་ ⍸ ་ )",
-            "(　☉д⊙)"
-        ],
-        "weird creepy": [
-            "(´⊙◞⊱​◟⊙｀)​",
-            "(´◉◞⊖◟◉｀)"
-        ],
-        "weird wtf gross": [
-            "༼;´༎ຶ ۝ ༎ຶ༽",
-            "(◞≼⓪≽◟⋌⋚⋛⋋◞≼⓪≽)"
-        ],
-        "weird hide stalkerific": [
-            "|ω・)",
-            "┬┴┬┴┤(･_├┬┴┬┴"
-        ]
-    },
-    "nameMap": {
-        // eslint-disable-line
-    },
-    "nameArr": [
-        // eslint-disable-line
-    ]
-}
+const kaomojiCollection = window["8aad06a6-a176-4807-a898-a9f56fa10298"]
+const kaomoji = kaomojiCollection.kaomoji
+const nameMap = kaomojiCollection.nameMap
+const nameArr = kaomojiCollection.nameArr
+const getSuggestions = window["c5abf658-dbfb-4691-90bb-da26bfc1b7c7"]
 
-//     (╯°□°）╯ logics*:
-
-_.forEach(lib.kaomoji, (kaomoji, fullName) => {
-    _.forEach(fullName.split(" "), partiallyName => {
-        while (lib.nameMap[partiallyName]) {
-            partiallyName = `_${partiallyName}`
-        }
-        lib.nameMap[partiallyName] = fullName
-        lib.nameArr.push(partiallyName)
-    })
-})
-
-const kaomoji = lib.kaomoji
-const nameMap = lib.nameMap
-const nameArr = lib.nameArr
 let suggestionsTurnOff = false
 
 $(document).ready(() => {
@@ -200,20 +32,6 @@ $(document).ready(() => {
 })
 
 let suggestedKaomojis = []
-
-function getSuggestions (lastWord) {
-    lastWord = lastWord.toLowerCase()
-    let matchingKaomojis = []
-    if (kaomoji[lastWord]) matchingKaomojis = _.union(matchingKaomojis, kaomoji[lastWord])
-    if (nameMap[lastWord]) matchingKaomojis = _.union(matchingKaomojis, kaomoji[nameMap[lastWord]])
-    _.forEach(nameArr, name => {
-        if (name.includes(lastWord)) {
-            matchingKaomojis = _.union(matchingKaomojis, kaomoji[nameMap[name]])
-        }
-    })
-
-    return matchingKaomojis
-}
 
 function addListenEvent (inputPopup, newDom) {
     $(newDom).on('input selectionchange propertychange', function (e) {
@@ -244,7 +62,7 @@ function addListenEvent (inputPopup, newDom) {
 }
 
 function updateDropDown (el, allWords, lastWord) {
-    suggestedKaomojis = getSuggestions (lastWord)
+    suggestedKaomojis = getSuggestions (kaomoji, nameMap, nameArr, lastWord)
     let innerHtml = "<div><p class='tip'>No need to click. Just type 1-9</p>"
     _.forEach(suggestedKaomojis, (kaomoji, index) => {
         if (index < 9) innerHtml += "<span>" + (index + 1) + ". " + kaomoji + "</span><br />"
