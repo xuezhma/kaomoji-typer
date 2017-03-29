@@ -29,7 +29,7 @@ function initSuggestionPopup() {
 	container.className = "kaomoji-typer-container"
 	container.innerHTML = `
 		<div class="kaomoji-typer kaomoji-typer--header">
-			<span>Kaomoji Typer</span> <small>v0.2.0</small>
+			<span>Kaomoji Typer</span> <small>v1.0.0</small>
 		</div>
 		<div class="kaomoji-typer kaomoji-typer--body">
 		</div>
