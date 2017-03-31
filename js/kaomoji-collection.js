@@ -159,16 +159,17 @@ const kaomojiCollection = {
     ]
 }
 
-_.forEach(kaomojiCollection.kaomoji, (kaomoji, fullName) => {
-    _.forEach(fullName.split(" "), partiallyName => {
-        while (kaomojiCollection.nameMap[partiallyName]) {
+const kaomoji = kaomojiCollection.kaomoji
+
+for (const fullName in kaomoji) {
+	fullName.split(" ").forEach(partiallyName => {
+		while (kaomojiCollection.nameMap[partiallyName]) {
             partiallyName = `_${partiallyName}`
         }
         kaomojiCollection.nameMap[partiallyName] = fullName
         kaomojiCollection.nameArr.push(partiallyName)
-    })
-})
+	})
+}
 
-const kaomoji = kaomojiCollection.kaomoji
 const nameMap = kaomojiCollection.nameMap
 const nameArr = kaomojiCollection.nameArr
