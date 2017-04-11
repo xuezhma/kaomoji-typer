@@ -35,4 +35,32 @@
 }
 
 .kaomoji-typer--footer {
+	text-align: center;
+}
+
+.kaomoji-typer-click-error {
+	opacity: 0.01;
+	width: 80%;
+	padding: 10px;
+	border-radius: 5px;
+	position: absolute;
+    background: white;
+    top: 50%;
+    right: 50%;
+    color: red;
+    font-size: 20px;
+    transform: translateX(50%) translateY(-50%);
+	animation-name: example;
+    animation-duration: 4s;
+}
+
+@keyframes example {
+    0%   {opacity: 0.01;}
+    10%   {opacity: 1;}
+	20%   {opacity: 0.1;}
+	30%   {opacity: 1;}
+	40%   {opacity: 0.1;}
+	50%   {opacity: 1;}
+	90%   {opacity: 1;}
+	100%   {opacity: 0.01;}
 }

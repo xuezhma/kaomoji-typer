@@ -14,7 +14,7 @@
       {
           "matches": ["https://*/*"],
           "js": ["js/kaomoji-collection.js", "js/suggestion-algorithm.js", "js/dom-manipulation.js", "js/index.js"],
-          "css": ["css/jquery-ui-1.12.0.min.css", "css/index.css"]
+          "css": ["css/index.css"]
       }
 
   ],

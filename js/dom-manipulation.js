@@ -25,6 +25,12 @@ function openNewDropDown(node, container) {
 
 function initSuggestionPopup() {
 
+	const tips = [
+		"scroll with '-' and '=' when there're 9+ results?",
+		"toggle the app with 'shift' + 'space'?",
+		"select a kaomoji by typing its index? "
+	]
+	const randomNumber = Math.floor(Math.random() * tips.length)
 	const container = document.createElement("div")
 	container.className = "kaomoji-typer-container"
 	container.innerHTML = `
@@ -34,13 +40,28 @@ function initSuggestionPopup() {
 		<div class="kaomoji-typer kaomoji-typer--body">
 		</div>
 		<div class="kaomoji-typer kaomoji-typer--footer">
-			<span>Report an Issue</span>
+			<span>Do you know you can...<br /> ${tips[randomNumber]}</span>
 		</div>
 	`
 	container.style.display = "none"
 	document.body.appendChild(container)
+	const containerBody = container.getElementsByClassName("kaomoji-typer--body")[0]
+
+	container.addEventListener("mouseup", () => {
+		window.DOMCache.focus()
+	})
+
+	containerBody.addEventListener("mouseup", () => {
+		const clickErrorDOM = document.createElement("div")
+		clickErrorDOM.className = "kaomoji-typer-click-error"
+		clickErrorDOM.innerHTML = "(　･ω･)☞ <br /> Type the index instead of clicking"
+		container.appendChild(clickErrorDOM)
+		setTimeout(() => container.removeChild(clickErrorDOM), 4000)
+	})
 	return container
 }
+
+
 
 function renderSuggestionPopup(suggestionsTabs , suggestionPopupDOMNode) {
 	const suggestionPopupDOMNodeInnerHTML = suggestionsTabs.reduce(allTabToDOMString,"")
@@ -58,7 +79,7 @@ function allTabToDOMString(tabA, tabB) {
 
 function renderSuggestionPopupTab(suggestionPopupDOMNode, activeTabIndex, preTabIndex) {
 	const tabDOMNodes = suggestionPopupDOMNode.getElementsByClassName("kaomoji-typer-listitem-group")
-	tabDOMNodes[activeTabIndex].classList.remove("kaomoji-typer-listitem-group--hide")
+	if (tabDOMNodes[activeTabIndex]) tabDOMNodes[activeTabIndex].classList.remove("kaomoji-typer-listitem-group--hide")
 	if (preTabIndex !== undefined) tabDOMNodes[preTabIndex].classList.add("kaomoji-typer-listitem-group--hide")
 }
 
