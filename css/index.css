@@ -1,13 +1,69 @@
-.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-draggable.ui-resizable {
-    z-index: 99999999999;
+.kaomoji-typer-container {
+	z-index: 9999999999999;
+	width: 400px;
+	color: white;
+	font-family: Century Gothic, sans-serif;
+	position: fixed;
+	left: 0px;
+	bottom: 0px;
+	margin: 50px;
+	user-select: none;
+	background: rgba(0, 0, 0, 0.8);
+	border-radius: 10px;
 }
 
-.tip {
-    color: white;
-    background: black;
-    font-size: 18px;
-    transform: translateY(10px);
-    position: absolute;
-    padding: 5px;
-    border-radius: 5px;
+.kaomoji-typer {
+	cursor: default;
+	padding: 10px 25px;
+}
+
+.kaomoji-typer--header {
+	border-radius: 10px 10px 0px 0px;
+	cursor: move;
+	background-color: #111;
+	opacity: 1;
+}
+
+.kaomoji-typer--body {
+	min-height: 120px;
+}
+
+.kaomoji-typer-listitem {
+	padding:2px;
+	display: block;
+}
+
+.kaomoji-typer-listitem-group--hide {
+	display: none;
+}
+
+.kaomoji-typer--footer {
+	text-align: center;
+}
+
+.kaomoji-typer-click-error {
+	opacity: 0.01;
+	width: 80%;
+	padding: 10px;
+	border-radius: 5px;
+	position: absolute;
+    background: white;
+    top: 50%;
+    right: 50%;
+    color: red;
+    font-size: 20px;
+    transform: translateX(50%) translateY(-50%);
+	animation-name: example;
+    animation-duration: 4s;
+}
+
+@keyframes example {
+    0%   {opacity: 0.01;}
+    10%   {opacity: 1;}
+	20%   {opacity: 0.1;}
+	30%   {opacity: 1;}
+	40%   {opacity: 0.1;}
+	50%   {opacity: 1;}
+	90%   {opacity: 1;}
+	100%   {opacity: 0.01;}
 }
