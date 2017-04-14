@@ -49,8 +49,7 @@ function forceUpdate(container = document.getElementsByClassName("kaomoji-typer-
 		if (shouldSuggest) window.DOMCache = node
 		const willSuggest = !suggestionsTurnOff && shouldSuggest
 		node.addEventListener("blur", blurListener)
-
-		if (!willSuggest) return container.style.display = "none"
+		if (!willSuggest) return
 		return openNewDropDown(node, container)
 	}, 1)
 }
@@ -60,5 +59,5 @@ function focusListener() {
 }
 
 function blurListener(e) {
-	if (!e.relatedTarget || !e.relatedTarget.className.includes("kaomoji-typer")) forceUpdate()
+	forceUpdate()
 }

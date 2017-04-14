@@ -58,6 +58,34 @@ function initSuggestionPopup() {
 		container.appendChild(clickErrorDOM)
 		setTimeout(() => container.removeChild(clickErrorDOM), 4000)
 	})
+
+	const containerHeader = container.getElementsByClassName("kaomoji-typer--header")[0]
+
+	containerHeader.addEventListener("mousedown", () => {
+		window.dragging = true
+	})
+
+	containerHeader.addEventListener("mouseup", () => {
+		window.dragging = false
+		window.x = null
+		window.y = null
+	})
+
+	window.addEventListener("mousemove", e => {
+		if (!window.dragging) return
+		const prevX = window.x
+		const prevY = window.y
+		if (prevX !== null) {
+			const moveX = prevX - e.x
+			const moveY = prevY - e.y
+			container.style.left = +container.style.left.split("px")[0] - moveX + "px"
+			container.style.bottom = +container.style.bottom.split("px")[0] + moveY + "px"
+		}
+
+		window.x = e.x
+		window.y = e.y
+	})
+
 	return container
 }
 

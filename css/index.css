@@ -1,9 +1,12 @@
 .kaomoji-typer-container {
+	z-index: 9999999999999;
 	width: 400px;
 	color: white;
 	font-family: Century Gothic, sans-serif;
 	position: fixed;
-	top: 50%;
+	left: 0px;
+	bottom: 0px;
+	margin: 50px;
 	user-select: none;
 	background: rgba(0, 0, 0, 0.8);
 	border-radius: 10px;
