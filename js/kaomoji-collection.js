@@ -2,7 +2,7 @@
 
 const kaomojiCollection = {
     "kaomoji": {
-        "angry": [
+        "angry middle finger fuck": [
             "凸(｀0´)凸",
             "凸ಠ益ಠ)凸",
             "凸(⊙▂⊙✖ )",
@@ -22,7 +22,7 @@ const kaomojiCollection = {
             "ฅ(＾・ω・＾ฅ)",
             `චᆽච`
         ],
-        "christmas": [
+        "christmas xmas": [
             "(＾∇^*)ノ⌒☆ -=★ -=☆*Merry X’mas*☆",
             "。∈・^ミβ(*´ω｀人´ω｀*)*:..｡o○☆*ﾟ¨ﾟMerry Christmas .｡.:*"
         ],
