@@ -2,8 +2,8 @@
   "manifest_version": 2,
 
   "name": "Kaomoji-Typer",
-  "description": "A kaomoji input that suggests kaomojis to you based on what you are typing",
-  "version": "1.0.0",
+  "description": "Type Kaomoji natively with key bindings and Kaomoji search",
+  "version": "1.0.1",
   "icons": {
       "16": "images/icon.png",
       "48": "images/icon.png",
