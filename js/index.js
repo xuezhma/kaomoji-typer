@@ -45,7 +45,7 @@ function forceUpdate(container = document.getElementsByClassName("kaomoji-typer-
 		const node = document.activeElement
 		node.addEventListener("focus", focusListener)
 		const nodeName = node.nodeName
-		const shouldSuggest = nodeName === "TEXTAREA" || ( nodeName === "INPUT" && node.type !== "password")
+		const shouldSuggest = nodeName === "TEXTAREA" || ( nodeName === "INPUT" && node.type !== "password") || node.contentEditable
 		if (shouldSuggest) window.DOMCache = node
 		if (suggestionsTurnOff) container.style.display = "none"
 		const willSuggest = !suggestionsTurnOff && shouldSuggest

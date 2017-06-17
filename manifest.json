@@ -12,8 +12,8 @@
 
   "content_scripts": [
       {
-          "matches": ["https://*/*"],
-          "js": ["js/kaomoji-collection.js", "js/suggestion-algorithm.js", "js/dom-manipulation.js", "js/index.js"],
+          "matches": ["https://*/*", "http://*/*"],
+          "js": ["js/array-prototype.js", "js/kaomoji-collection.js", "js/suggestion-algorithm.js", "js/dom-manipulation.js", "js/index.js"],
           "css": ["css/index.css"]
       }
 
