@@ -1,9 +1,10 @@
 "use strict"
 
 function openNewDropDown(node, container) {
-
-	const lastWord = node.value.split(" ").pop()
-	container.style.display = lastWord.length > 1 ? "" : "none"
+	const lastWord = node.contentEditable === "true"
+		? node.textContent && node.textContent.split(" ").pop()
+		: node.value && node.value.split(" ").pop()
+	container.style.display = lastWord && lastWord.length > 1 ? "" : "none"
 	if (container.style.display === "none") return
 	const suggestions = getSuggestions(kaomoji, nameMap, nameArr, lastWord)
 	const totalSuggestions = suggestions.length
@@ -112,8 +113,20 @@ function renderSuggestionPopupTab(suggestionPopupDOMNode, activeTabIndex, preTab
 }
 
 function inputSelectedKaomoji(node, selectedKaomoji) {
-	const value = node.value.split(" ")
+	const value = node.contentEditable === "true" ? node.textContent.split(" ") : node.value.split(" ")
 	value.pop()
 	value.push(selectedKaomoji.value)
-	node.value = value.join(" ") + " "
+	if (node.contentEditable === "true") {
+		const textNode = node.firstChild
+		textNode.nodeValue = value.join(" ") + " "
+		const caret = node.textContent.length
+		const range = document.createRange()
+		range.setStart(textNode, caret)
+		range.setEnd(textNode, caret)
+		const sel = window.getSelection()
+		sel.removeAllRanges()
+		sel.addRange(range)
+	} else {
+		node.value = value.join(" ") + " "
+	}
 }
