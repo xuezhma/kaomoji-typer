@@ -5,7 +5,7 @@ let suggestionsTurnOff = false
 window.onload = () => {
 	window.activeTab = 0
 	window.totalTab = 0
-	const container = initSuggestionPopup()
+	const container = initSuggestionPopup() // eslint-disable-line no-undef
 	document.onkeydown = e => {
 		if ((e.key === "-" || e.key === "=" || e.key > 0) && window.totalTab) return false
 		if (e.key === " " && e.shiftKey) {
@@ -17,20 +17,20 @@ window.onload = () => {
 	document.onkeyup = e => {
 		if (e.key === " " && e.shiftKey === true) return
 		else if (e.key === "=") {
-			if (window.activeTab + 2 > window.totalTab) return
+			if (window.activeTab + 2 > window.totalTab) return;
 			window.activeTab++
 			const suggestionPopupDOMNode = container.getElementsByClassName("kaomoji-typer--body")[0]
-			return renderSuggestionPopupTab(suggestionPopupDOMNode, window.activeTab, window.activeTab-1)
+			return renderSuggestionPopupTab(suggestionPopupDOMNode, window.activeTab, window.activeTab - 1) // eslint-disable-line no-undef
 		}
 		else if (e.key === "-") {
-			if (window.activeTab === 0) return
+			if (window.activeTab === 0) return;
 			window.activeTab--
 			const suggestionPopupDOMNode = container.getElementsByClassName("kaomoji-typer--body")[0]
-			return renderSuggestionPopupTab(suggestionPopupDOMNode, window.activeTab, window.activeTab+1)
+			return renderSuggestionPopupTab(suggestionPopupDOMNode, window.activeTab, window.activeTab + 1) // eslint-disable-line no-undef
 		}
 		else if (e.key > 0) {
-			const selectKaomoji = window.suggestionsTabs[window.activeTab] && window.suggestionsTabs[window.activeTab][e.key ]
-			if (selectKaomoji) inputSelectedKaomoji(document.activeElement, selectKaomoji)
+			const selectKaomoji = window.suggestionsTabs[window.activeTab] && window.suggestionsTabs[window.activeTab][e.key]
+			if (selectKaomoji) inputSelectedKaomoji(document.activeElement, selectKaomoji) // eslint-disable-line no-undef
 		}
 
 		forceUpdate(container)
@@ -45,13 +45,14 @@ function forceUpdate(container = document.getElementsByClassName("kaomoji-typer-
 		const node = document.activeElement
 		node.addEventListener("focus", focusListener)
 		const nodeName = node.nodeName
-		const shouldSuggest = nodeName === "TEXTAREA" || ( nodeName === "INPUT" && node.type !== "password") || node.contentEditable
+		const shouldSuggest = nodeName === "TEXTAREA" || (nodeName === "INPUT" && node.type !== "password") || node.contentEditable === "true"
+		console.log("shouldSuggest: ", shouldSuggest)
 		if (shouldSuggest) window.DOMCache = node
 		if (suggestionsTurnOff) container.style.display = "none"
 		const willSuggest = !suggestionsTurnOff && shouldSuggest
 		node.addEventListener("blur", blurListener)
 		if (!willSuggest) return
-		return openNewDropDown(node, container)
+		return openNewDropDown(node, container) // eslint-disable-line no-undef
 	}, 1)
 }
 

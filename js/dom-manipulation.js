@@ -1,17 +1,16 @@
 "use strict"
 
-function openNewDropDown(node, container) {
+function openNewDropDown(node, container) {  // eslint-disable-line no-unused-vars
 	const lastWord = node.contentEditable === "true"
 		? node.textContent && node.textContent.split(" ").pop()
 		: node.value && node.value.split(" ").pop()
 	container.style.display = lastWord && lastWord.length > 1 ? "" : "none"
 	if (container.style.display === "none") return
-	const suggestions = getSuggestions(kaomoji, nameMap, nameArr, lastWord)
-	const totalSuggestions = suggestions.length
+	const suggestions = getSuggestions(kaomoji, nameMap, nameArr, lastWord) // eslint-disable-line no-undef
 	const suggestionsTabs = []
 	suggestions.forEach((element, index) => {
 		const tabIndex = Math.floor(index / 9)
-		const indexInsideTab =  index % 9 + 1
+		const indexInsideTab = index % 9 + 1
 		if (indexInsideTab === 1) suggestionsTabs.push([])
 		suggestionsTabs[tabIndex][indexInsideTab] = {
 			index: indexInsideTab,
@@ -21,11 +20,10 @@ function openNewDropDown(node, container) {
 	const suggestionPopupDOMNode = container.getElementsByClassName("kaomoji-typer--body")[0]
 	window.totalTab = suggestionsTabs.length
 	window.suggestionsTabs = suggestionsTabs
-	return renderSuggestionPopup(suggestionsTabs , suggestionPopupDOMNode)
+	return renderSuggestionPopup(suggestionsTabs, suggestionPopupDOMNode)
 }
 
-function initSuggestionPopup() {
-
+function initSuggestionPopup() { // eslint-disable-line no-unused-vars
 	const tips = [
 		"scroll with '-' and '=' when there're 9+ results?",
 		"toggle the app with 'shift' + 'space'?",
@@ -90,16 +88,14 @@ function initSuggestionPopup() {
 	return container
 }
 
-
-
-function renderSuggestionPopup(suggestionsTabs , suggestionPopupDOMNode) {
-	const suggestionPopupDOMNodeInnerHTML = suggestionsTabs.reduce(allTabToDOMString,"")
+function renderSuggestionPopup(suggestionsTabs, suggestionPopupDOMNode) {
+	const suggestionPopupDOMNodeInnerHTML = suggestionsTabs.reduce(allTabToDOMString, "")
 	suggestionPopupDOMNode.innerHTML = suggestionPopupDOMNodeInnerHTML
 	renderSuggestionPopupTab(suggestionPopupDOMNode, 0)
 }
 
 function singleTabToDOMString(a, b) {
-	return`${a}\n<div class="kaomoji-typer-listitem"><span>${b.index}. ${b.value}</span></div>`
+	return `${a}\n<div class="kaomoji-typer-listitem"><span>${b.index}. ${b.value}</span></div>`
 }
 
 function allTabToDOMString(tabA, tabB) {
@@ -112,7 +108,7 @@ function renderSuggestionPopupTab(suggestionPopupDOMNode, activeTabIndex, preTab
 	if (preTabIndex !== undefined) tabDOMNodes[preTabIndex].classList.add("kaomoji-typer-listitem-group--hide")
 }
 
-function inputSelectedKaomoji(node, selectedKaomoji) {
+function inputSelectedKaomoji(node, selectedKaomoji) { // eslint-disable-line no-unused-vars
 	const value = node.contentEditable === "true" ? node.textContent.split(" ") : node.value.split(" ")
 	value.pop()
 	value.push(selectedKaomoji.value)
